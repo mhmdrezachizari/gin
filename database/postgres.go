@@ -21,10 +21,11 @@ func ConnectDB() {
 
 	DB = db
 
-	err = DB.AutoMigrate(
-		&models.Product{},
-		&models.ProductImage{},
-	)
+err = DB.AutoMigrate(
+	&models.Product{},
+	&models.ProductImage{},
+	&models.User{},
+)
 
 	if err != nil {
 		log.Fatal("failed to migrate database:", err)
