@@ -90,7 +90,7 @@ func CreateProduct(c *gin.Context) {
 func GetProducts(c *gin.Context) {
 	var products []models.Product
 
-	if err := database.DB.Find(&products).Error; err != nil {
+	if err := database.DB.Preload("Images").Find(&products).Error; err != nil  {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})

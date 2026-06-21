@@ -11,6 +11,6 @@ func main() {
 	router:=gin.Default()
 	router.Static("/uploads", "./uploads")
 	router.GET("/products", handlers.GetProducts)
-	router.POST("/products", handlers.GetProducts)
+	router.POST("/products", handlers.CreateProduct)
 	router.Run(":8080")
 }
