@@ -1,11 +1,16 @@
 package models
 
-import "gorm.io/gorm"
+type Product struct {
+	ID          uint           `json:"id" gorm:"primaryKey"`
+	Title       string         `json:"title"`
+	Description string         `json:"description"`
+	Price       uint           `json:"price"`
 
-type Product struct{
-	gorm.Model
+	Images []ProductImage `json:"images" gorm:"foreignKey:ProductID"`
+}
 
-	Title  string`json:"title"`
-	Description string `json:"description"`
-	Price       int    `json:"price"`
+type ProductImage struct {
+	ID        uint   `json:"id" gorm:"primaryKey"`
+	ProductID uint   `json:"product_id"`
+	ImageURL  string `json:"image_url"`
 }
