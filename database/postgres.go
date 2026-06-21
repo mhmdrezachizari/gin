@@ -3,6 +3,8 @@ package database
 import (
 	"log"
 
+	"backend/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -18,4 +20,13 @@ func ConnectDB() {
 	}
 
 	DB = db
+
+	err = DB.AutoMigrate(
+		&models.Product{},
+		&models.ProductImage{},
+	)
+
+	if err != nil {
+		log.Fatal("failed to migrate database:", err)
+	}
 }
